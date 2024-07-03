@@ -25,29 +25,29 @@ all: build
 build: $(EXEC)
 
 $(EXEC): $(OBJ_FILES)
-    $(CC) $(OBJ_FILES) -o $@
+	$(CC) $(OBJ_FILES) -o $@
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-    @mkdir -p $(BUILD_DIR)
-    $(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 test: $(TEST_EXEC)
-    $(TEST_EXEC)
+	$(TEST_EXEC)
 
 $(TEST_EXEC): $(TEST_OBJ_FILES)
-    $(CC) $(TEST_OBJ_FILES) -o $@
+	$(CC) $(TEST_OBJ_FILES) -o $@
 
 $(BUILD_DIR)/test_%.o: $(TEST_DIR)/%.c
-    @mkdir -p $(BUILD_DIR)
-    $(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 lint:
-    @echo "Running lint..."
-    # Add linting command here, for example, cppcheck or another linter
-    cppcheck $(SRC_DIR) $(TEST_DIR)
+	@echo "Running lint..."
+	# Add linting command here, for example, cppcheck or another linter
+	cppcheck $(SRC_DIR) $(TEST_DIR)
 
 clean:
-    @echo "Cleaning up..."
-    rm -rf $(BUILD_DIR)
+	@echo "Cleaning up..."
+	rm -rf $(BUILD_DIR)
 
 .PHONY: all build test lint clean
